@@ -36,7 +36,8 @@ public class ImageViewer extends JFrame implements ActionListener, ChangeListene
     JButton btnOriginal, btnCopia;
     JPanel mainPanel, filterPanel;
     JScrollPane imageScrollPane;
-    JRadioButton rSource, rSmoothing, rHighlightEdges, rBlur;
+    JRadioButton rSource, rSmoothing, rHighlightEdges, rBlur, rGaussianBlur,
+            rMedianBlur, rBilateral;
     ButtonGroup btnGroup;
     Mat source;
     ImageFiltering filter;
@@ -99,11 +100,27 @@ public class ImageViewer extends JFrame implements ActionListener, ChangeListene
         rBlur.setBounds(10, 120, 300, 20);
         rBlur.setBackground(Color.WHITE);
         
+        rGaussianBlur = new JRadioButton("Desenfoque Gaussiano");
+        rGaussianBlur.setBounds(10, 150, 300, 20);
+        rGaussianBlur.setBackground(Color.WHITE);
+        
+        rMedianBlur = new JRadioButton("Desenfoque Mediano");
+        rMedianBlur.setBounds(10, 180, 300, 20);
+        rMedianBlur.setBackground(Color.WHITE);
+        
+        rBilateral = new JRadioButton("Filtrado bilateral");
+        rBilateral.setBounds(10, 210, 300, 20);
+        rBilateral.setBackground(Color.WHITE);
+        
+        // añadimos a radio buttons a un group
         btnGroup = new ButtonGroup();
         btnGroup.add(rSource);
         btnGroup.add(rSmoothing);
         btnGroup.add(rHighlightEdges);
         btnGroup.add(rBlur);
+        btnGroup.add(rGaussianBlur);
+        btnGroup.add(rMedianBlur);
+        btnGroup.add(rBilateral);
         
         // añadimos componentes
         add(mainPanel);
@@ -113,12 +130,18 @@ public class ImageViewer extends JFrame implements ActionListener, ChangeListene
         filterPanel.add(rSmoothing);
         filterPanel.add(rHighlightEdges);
         filterPanel.add(rBlur);
+        filterPanel.add(rGaussianBlur);
+        filterPanel.add(rMedianBlur);
+        filterPanel.add(rBilateral);
         
         // eventos
         rSource.addChangeListener(this);
         rSmoothing.addChangeListener(this);
         rHighlightEdges.addChangeListener(this);
         rBlur.addChangeListener(this);
+        rGaussianBlur.addChangeListener(this);
+        rMedianBlur.addChangeListener(this);
+        rBilateral.addChangeListener(this);
         
         // Mostramos la ventana
         setVisible(true);
@@ -147,6 +170,12 @@ public class ImageViewer extends JFrame implements ActionListener, ChangeListene
             if(rHighlightEdges.isSelected()) view(filter.highlightEdges(source));
         } else if(e.getSource().equals(rBlur)){
             if(rBlur.isSelected()) view(filter.blur(source));
+        } else if(e.getSource().equals(rGaussianBlur)){
+            if(rGaussianBlur.isSelected()) view(filter.gaussianBlur(source));
+        } else if(e.getSource().equals(rMedianBlur)){
+            if(rMedianBlur.isSelected()) view(filter.medianBlur(source));
+        } else if(e.getSource().equals(rBilateral)){
+            if(rBilateral.isSelected()) view(filter.bilateralFiltering(source));
         }
     }
 }

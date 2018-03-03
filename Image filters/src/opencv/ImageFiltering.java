@@ -7,6 +7,7 @@ package opencv;
 
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
+import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 /**
@@ -86,12 +87,43 @@ public class ImageFiltering {
     // desenfoque
     public Mat blur(Mat source){
         // llenamos la matriz kernel
-        int[] values = new int[]{0,0,0,0,0,0,1,1,1,0,0,1,1,1,0,0,1,1,1,0,0,0,0,0,0};
+        int[] values = new int[]{1,1,1,1,1,1,1,1,1};
         refill(values);
         // Creamos una matriz destino
         Mat dst = new Mat(source.rows(), source.cols(), source.type());
         // aplicamos el filtro
-        Imgproc.filter2D(source, dst, -1, kernel5);
+        // Imgproc.filter2D(source, dst, -1, kernel3);
+        Imgproc.blur(source, dst, new Size(3,3));
+        // retornamos la imagen filtrada
+        return dst;
+    }
+    
+    // desenfoque gaussiano
+    public Mat gaussianBlur(Mat source){
+        // Creamos una matriz destino
+        Mat dst = new Mat(source.rows(), source.cols(), source.type());
+        // aplicamos el filtro
+        Imgproc.GaussianBlur(source, dst, new Size(3,3), 0);
+        // retornamos la imagen filtrada
+        return dst;
+    }
+    
+    // desenfoque con pixel mediano
+    public Mat medianBlur(Mat source){
+        // Creamos una matriz destino
+        Mat dst = new Mat(source.rows(), source.cols(), source.type());
+        // aplicamos el filtro
+        Imgproc.medianBlur(source, dst, 3);
+        // retornamos la imagen filtrada
+        return dst;
+    }
+    
+    // filtrad bilateral
+    public Mat bilateralFiltering(Mat source){
+        // Creamos una matriz destino
+        Mat dst = new Mat(source.rows(), source.cols(), source.type());
+        // aplicamos el filtro
+        Imgproc.bilateralFilter(source, dst, 5, 150, 150);
         // retornamos la imagen filtrada
         return dst;
     }
