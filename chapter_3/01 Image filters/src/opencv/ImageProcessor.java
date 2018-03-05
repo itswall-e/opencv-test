@@ -16,7 +16,11 @@ import org.opencv.core.Mat;
  */
 public final class ImageProcessor
 {   
-    // Convertimos de matriz a imagen
+    /*
+     * Convertimos de matriz a imagen
+     *
+     * @param matrix Matriz que convertiremos en imagen
+     */
     public static Image toBufferedImage(Mat matrix){
         // Por defeco el tipo de imagen es en escala de grises
         int type = BufferedImage.TYPE_BYTE_GRAY;

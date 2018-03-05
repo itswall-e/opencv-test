@@ -11,12 +11,16 @@ import org.opencv.imgcodecs.Imgcodecs;
 
 /**
  * Filtros para imagenes utilizando convolution
+ * 
  * @author paulo-andrade
  */
 public class Main {
     // Cargamos las librerias dinamicas de OpenCV
     static{ System.loadLibrary(Core.NATIVE_LIBRARY_NAME); }
     
+    /*
+     * @param args Argumentos de linea de comandos
+    */
     public static void main(String[] args)
     {
         String path = "paisaje.jpg";

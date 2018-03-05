@@ -12,19 +12,26 @@ import org.opencv.imgproc.Imgproc;
 
 /**
  *
- * @author paulo-andrade
+ * @author Paulo Andrade
  */
-public class ImageFiltering {
+public class ImageFiltering
+{
     Mat kernel3, kernel5;
     
-    // constructor de la clase
+    /*
+     * constructor de la clase
+     */
     public ImageFiltering()
     {
         kernel3 = new Mat(3, 3, CvType.CV_32F);
         kernel5 = new Mat(5, 5, CvType.CV_32F);
     }
     
-    // llenado de matrices
+    /*
+     * llenado de matrices
+     *
+     * @param values Vector con valores para crear la matriz kernel
+     */
     private void refill(int[] values)
     {
         int size = values.length;
@@ -58,7 +65,11 @@ public class ImageFiltering {
         }
     }
     
-    // filtro para suavizado de imagenes
+    /*
+     * Filtro para suavizado de imagenes
+     *
+     * @param source Matriz original para aplicar filtro
+     */
     public Mat smoothing(Mat source){
         // llenamos la matriz kernel
         int[] values = new int[]{0, 0, 0, 0, 1, 0, 0, 0, 0};
@@ -71,7 +82,11 @@ public class ImageFiltering {
         return dst;
     }
     
-    // realzado de bordes highlight edges
+    /*
+     * Realzado de bordes highlight edges
+     *
+     * @param source Matriz original para aplicar filtro
+     */
     public Mat highlightEdges(Mat source){
         // llenamos la matriz kernel
         int[] values = new int[]{0, 0, 0, -1, 1, 0, 0, 0, 0};
@@ -84,7 +99,11 @@ public class ImageFiltering {
         return dst;
     }
     
-    // desenfoque
+    /*
+     * Desenfoque
+     *
+     * @param source Matriz original para aplicar filtro
+     */
     public Mat blur(Mat source){
         // llenamos la matriz kernel
         int[] values = new int[]{1,1,1,1,1,1,1,1,1};
@@ -98,7 +117,11 @@ public class ImageFiltering {
         return dst;
     }
     
-    // desenfoque gaussiano
+    /*
+     * Desenfoque gaussiano
+     *
+     * @param source Matriz original para aplicar filtro
+     */
     public Mat gaussianBlur(Mat source){
         // Creamos una matriz destino
         Mat dst = new Mat(source.rows(), source.cols(), source.type());
@@ -108,7 +131,11 @@ public class ImageFiltering {
         return dst;
     }
     
-    // desenfoque con pixel mediano
+    /*
+     * desenfoque con pixel mediano
+     *
+     * @param source Matriz original para aplicar filtro
+     */
     public Mat medianBlur(Mat source){
         // Creamos una matriz destino
         Mat dst = new Mat(source.rows(), source.cols(), source.type());
@@ -118,7 +145,11 @@ public class ImageFiltering {
         return dst;
     }
     
-    // filtrad bilateral
+    /*
+     * filtrad bilateral
+     *
+     * @param source Matriz original para aplicar filtro
+     */
     public Mat bilateralFiltering(Mat source){
         // Creamos una matriz destino
         Mat dst = new Mat(source.rows(), source.cols(), source.type());
