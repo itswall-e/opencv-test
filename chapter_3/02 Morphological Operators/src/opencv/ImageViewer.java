@@ -158,7 +158,6 @@ public class ImageViewer extends JFrame implements ItemListener
         oPanel.add(rClose);
         
         // eventos
-        sKernel.add
         rRect.addItemListener(this);
         rCross.addItemListener(this);
         rEllipse.addItemListener(this);
