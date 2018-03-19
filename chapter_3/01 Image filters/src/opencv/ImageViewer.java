@@ -42,7 +42,12 @@ public class ImageViewer extends JFrame implements ActionListener, ChangeListene
     Mat source;
     ImageFiltering filter;
     
-    // constructor
+    /*
+     * constructor
+     *
+     * @param title Titulo de la ventana
+     * @param source Matriz de la imagen inicial a mostrar
+     */
     public ImageViewer(String title, Mat source)
     {
         this.title = title;
@@ -54,7 +59,9 @@ public class ImageViewer extends JFrame implements ActionListener, ChangeListene
         initComponents();
     }
     
-    // Inicializamos los componentes
+    /*
+     * Inicializamos los componentes
+     */
     protected void initComponents()
     {
         setTitle(title);
@@ -147,7 +154,11 @@ public class ImageViewer extends JFrame implements ActionListener, ChangeListene
         setVisible(true);
     }
     
-    // mostramos la imagen
+    /*
+     * mostramos la imagen
+     *
+     * @param m Matriz a convertir en imagen
+     */
     public void view(Mat m)
     {
         Image img = ImageProcessor.toBufferedImage(m);

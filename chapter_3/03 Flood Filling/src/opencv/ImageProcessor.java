@@ -12,7 +12,7 @@ import org.opencv.core.Mat;
 
 /**
  *
- * @author paulo
+ * @author Paulo Andrade
  */
 public final class ImageProcessor
 {   

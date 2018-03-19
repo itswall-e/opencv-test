@@ -5,30 +5,32 @@
  */
 package opencv;
 
+// Importamos las librerias
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.imgcodecs.Imgcodecs;
 
 /**
- * Filtros para imagenes utilizando convolution
- * 
- * @author paulo-andrade
+ *
+ * @author Paulo Andrade
  */
-public class Main {
+public class Main
+{   
     // Cargamos las librerias dinamicas de OpenCV
     static{ System.loadLibrary(Core.NATIVE_LIBRARY_NAME); }
     
-    /*
-     * @param args Argumentos de linea de comandos
-    */
+    /**
+     * @param args the command line arguments
+     */
     public static void main(String[] args)
     {
-        String path = "paisaje.jpg";
+        // Ruta de la imagen a mostrar
+        String path = "opencv.png";
 
         // cargamos la imagen
         Mat img = Imgcodecs.imread(path);
         
-        // creamos la ventana
-        ImageViewer view = new ImageViewer("Filtros de imagenes", img);
+        // creamos la ventana y mostramos la imagen
+        ImageViewer view = new ImageViewer("Flood Filling - OpenCV", img);
     }
 }
